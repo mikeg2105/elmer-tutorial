@@ -1,0 +1,206 @@
+Header
+  CHECK KEYWORDS Warn
+  Mesh DB "." "."
+  Include Path ""
+  Results Directory ""
+End
+
+Simulation
+  Max Output Level = 5
+  Coordinate System = Cartesian
+  Coordinate Mapping(3) = 1 2 3
+  Simulation Type = Steady state
+  Steady State Max Iterations = 1
+  Output Intervals(1) = 1
+  Solver Input File = case.sif
+  Post File = case.vtu
+End
+
+Constants
+  Gravity(4) = 0 -1 0 9.82
+  Stefan Boltzmann = 5.670374419e-08
+  Permittivity of Vacuum = 8.85418781e-12
+  Permeability of Vacuum = 1.25663706e-6
+  Boltzmann Constant = 1.380649e-23
+  Unit Charge = 1.6021766e-19
+End
+
+Body 1
+  Target Bodies(1) = 1
+  Name = "Body Property 1"
+  Equation = 1
+  Material = 3
+End
+
+Body 2
+  Target Bodies(1) = 2
+  Name = "Body 2"
+  Equation = 1
+End
+
+Body 3
+  Target Bodies(1) = 3
+  Name = "Body 3"
+  Equation = 1
+End
+
+Body 4
+  Target Bodies(1) = 4
+  Name = "Body 4"
+  Equation = 1
+End
+
+Body 5
+  Target Bodies(1) = 5
+  Name = "Body 5"
+  Equation = 1
+End
+
+Body 6
+  Target Bodies(1) = 6
+  Name = "Body 6"
+  Equation = 1
+End
+
+Body 7
+  Target Bodies(1) = 7
+  Name = "Body 7"
+  Equation = 1
+End
+
+Body 8
+  Target Bodies(1) = 8
+  Name = "Body 8"
+  Equation = 1
+End
+
+Body 9
+  Target Bodies(1) = 9
+  Name = "Body 9"
+  Equation = 1
+  Body Force = 1
+End
+
+Body 10
+  Target Bodies(1) = 10
+  Name = "Body 10"
+  Equation = 1
+End
+
+Body 11
+  Target Bodies(1) = 11
+  Name = "Body 11"
+  Equation = 1
+End
+
+Body 12
+  Target Bodies(1) = 12
+  Name = "Body 12"
+  Equation = 1
+End
+
+Body 13
+  Target Bodies(1) = 13
+  Name = "Body 13"
+  Equation = 1
+End
+
+Body 14
+  Target Bodies(1) = 14
+  Name = "Body Property 14"
+  Equation = 1
+  Material = 3
+End
+
+Solver 1
+  Equation = Heat Equation
+  Procedure = "HeatSolve" "HeatSolver"
+  Variable = Temperature
+  Exec Solver = Always
+  Stabilize = True
+  Optimize Bandwidth = True
+  Steady State Convergence Tolerance = 1.0e-5
+  Nonlinear System Convergence Tolerance = 1.0e-7
+  Nonlinear System Max Iterations = 20
+  Nonlinear System Newton After Iterations = 3
+  Nonlinear System Newton After Tolerance = 1.0e-3
+  Nonlinear System Relaxation Factor = 1
+  Linear System Solver = Iterative
+  Linear System Iterative Method = BiCGStab
+  Linear System Max Iterations = 500
+  Linear System Convergence Tolerance = 1.0e-10
+  BiCGstabl polynomial degree = 2
+  Linear System Preconditioning = ILU0
+  Linear System ILUT Tolerance = 1.0e-3
+  Linear System Abort Not Converged = False
+  Linear System Residual Output = 10
+  Linear System Precondition Recompute = 1
+End
+
+Equation 1
+  Name = "Equation 1"
+  Convection = Computed
+  Active Solvers(1) = 1
+End
+
+Material 1
+  Name = "Air (room temperature)"
+  Viscosity = 1.983e-5
+  Density = 1.205
+  Heat Capacity = 1005.0
+  Heat Conductivity = 0.0257
+  Heat expansion Coefficient = 3.43e-3
+  Relative Permittivity = 1.00059
+  Sound speed = 343.0
+End
+
+Material 2
+  Name = "Aluminium (generic)"
+  Mesh Poisson ratio = 0.35
+  Heat Capacity = 897.0
+  Heat expansion Coefficient = 23.1e-6
+  Youngs modulus = 70.0e9
+  Heat Conductivity = 237.0
+  Density = 2700.0
+  Sound speed = 5000.0
+End
+
+Material 3
+  Name = "Steel (stainless - generic)"
+  Poisson ratio = 0.285
+  Density = 7925.0
+  Heat Conductivity = 24.0
+  Heat expansion Coefficient = 14.9e-6
+  Sound speed = 5100.0
+  Youngs modulus = 200.0e9
+  Heat Capacity = 460.0
+End
+
+Material 4
+  Name = "Material 4"
+End
+
+Material 5
+  Name = "Material 5"
+End
+
+Body Force 1
+  Name = "BodyForce 1-inputpower"
+  Heat Source = 1000
+End
+
+Boundary Condition 1
+  Target Boundaries(2) = 2 3 
+  Name = "BoundaryCondition 1"
+  Emissivity = 0.6
+  Radiation = Diffuse Gray
+  Radiation Target Body = -1
+End
+
+Boundary Condition 2
+  Target Boundaries(2) = 6 8 
+  Name = "BoundaryCondition 2"
+  Radiation = Diffuse Gray
+  Radiation Target Body = -1
+  Emissivity = 0.3
+End
