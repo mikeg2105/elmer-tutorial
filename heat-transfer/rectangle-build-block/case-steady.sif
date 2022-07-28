@@ -9,13 +9,9 @@ Simulation
   Max Output Level = 5
   Coordinate System = Cartesian
   Coordinate Mapping(3) = 1 2 3
-  Simulation Type = Transient
+  Simulation Type = Steady state
   Steady State Max Iterations = 1
   Output Intervals(1) = 1
-  Timestep intervals(1) = 3600
-  Timestep Sizes(1) = 15
-  Timestepping Method = BDF
-  BDF Order = 1
   Solver Input File = case.sif
   Post File = case.vtu
 End
@@ -124,7 +120,7 @@ End
 
 Body 13
   Target Bodies(1) = 13
-  Name = "Body Property 13"
+  Name = "Body 13"
   Equation = 1
   Material = 4
   Initial condition = 1
@@ -165,44 +161,44 @@ End
 
 Equation 1
   Name = "Equation 1"
+  Convection velocity 1 = 0.0001
+  Convection = Constant
   Convection velocity 2 = 0.0006
   Convection velocity 3 = 2
-  Convection = Constant
-  Convection velocity 1 = 0.0001
   Active Solvers(1) = 1
 End
 
 Material 1
   Name = "Air (room temperature)"
   Relative Permittivity = 1.00059
+  Sound speed = 343.0
   Heat Conductivity = 0.0257
+  Heat Capacity = 1005.0
+  Density = 1.205
   Heat expansion Coefficient = 3.43e-3
   Viscosity = 1.983e-5
-  Density = 1.205
-  Heat Capacity = 1005.0
-  Sound speed = 343.0
 End
 
 Material 2
   Name = "Aluminium (generic)"
+  Mesh Poisson ratio = 0.35
   Sound speed = 5000.0
   Youngs modulus = 70.0e9
-  Mesh Poisson ratio = 0.35
   Heat Capacity = 897.0
+  Heat Conductivity = 237.0
   Density = 2700.0
   Heat expansion Coefficient = 23.1e-6
-  Heat Conductivity = 237.0
 End
 
 Material 3
   Name = "Steel (stainless - generic)"
-  Heat expansion Coefficient = 14.9e-6
   Youngs modulus = 200.0e9
-  Density = 7925.0
+  Heat Capacity = 460.0
   Heat Conductivity = 24.0
   Sound speed = 5100.0
-  Heat Capacity = 460.0
+  Density = 7925.0
   Poisson ratio = 0.285
+  Heat expansion Coefficient = 14.9e-6
 End
 
 Material 4
@@ -210,8 +206,8 @@ Material 4
   Heat Conductivity = 1.14
   Poisson ratio = 0.15
   Heat Capacity = 710.0
-  Density = 2235.0
   Heat expansion Coefficient = 3.5e-6
+  Density = 2235.0
   Youngs modulus = 65.0e9
 End
 
@@ -221,7 +217,7 @@ End
 
 Body Force 1
   Name = "BodyForce 1-inputpower"
-  Heat Source = 0.05
+  Heat Source = 0.01
 End
 
 Initial Condition 1
@@ -233,16 +229,16 @@ Boundary Condition 1
   Target Boundaries(2) = 2 3 
   Name = "BoundaryCondition 1"
   Emissivity = 0.6
-  Radiation = Idealized
   External Temperature = 23
   Heat Transfer Coefficient = 0.5
+  Radiation = Idealized
 End
 
 Boundary Condition 2
   Target Boundaries(2) = 6 8 
   Name = "BoundaryCondition 2"
+  Radiation = Idealized
   External Temperature = 23
   Heat Transfer Coefficient = 0.5
   Emissivity = 0.3
-  Radiation = Idealized
 End
