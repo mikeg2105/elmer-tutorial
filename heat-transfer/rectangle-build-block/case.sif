@@ -12,7 +12,7 @@ Simulation
   Simulation Type = Transient
   Steady State Max Iterations = 1
   Output Intervals(1) = 1
-  Timestep intervals(1) = 3600
+  Timestep intervals(1) = 100
   Timestep Sizes(1) = 15
   Timestepping Method = BDF
   BDF Order = 1
@@ -226,7 +226,7 @@ End
 
 Initial Condition 1
   Name = "InitialCondition 1"
-  Temperature = 23
+  Temperature = 290
 End
 
 Boundary Condition 1
@@ -234,15 +234,15 @@ Boundary Condition 1
   Name = "BoundaryCondition 1"
   Emissivity = 0.6
   Radiation = Idealized
-  External Temperature = 23
+  External Temperature = 290
   Heat Transfer Coefficient = 0.5
 End
 
 Boundary Condition 2
   Target Boundaries(2) = 6 8 
   Name = "BoundaryCondition 2"
-  External Temperature = 23
+  External Temperature = 290
   Heat Transfer Coefficient = 0.5
   Emissivity = 0.3
-  Radiation = Idealized
+  Radiation = Diffuse Gray
 End
